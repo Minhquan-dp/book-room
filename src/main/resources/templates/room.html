@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Room</title>
+  <link href="/CSS/room.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="fragment/header :: header"></div>
+<div id="modal"></div>
+<div th:replace="fragment/navbar :: navbar"></div>
+<div class="main-content row w-100">
+  <div class="col-2 status-and-price">
+    <div class="row status mb-5"></div>
+    <div class="row mt-5 p-3 price" style="background-color: #0c6dbb; border-radius: 10px; color: var(--main-text);">
+      <div><span class="fw-bold">BẢNG GIÁ ĐIỆN NƯỚC:</span></div>
+      <div class="input-group m-1 mt-3">
+        <label for="priceOfElectric" class="input-group-text">Giá Điện: </label>
+        <input class="form-control" value="0" id="priceOfElectric" placeholder="Giá Điện" style="text-align: right;">
+        <label for="priceOfElectric" class="input-group-text">Đồng/Số</label>
+      </div>
+      <div class="input-group m-1 mt-3">
+        <label for="priceOfWater" class="input-group-text">Giá Nước: </label>
+        <input class="form-control" value="0" id="priceOfWater" placeholder="Giá Nước" style="text-align: right;">
+        <label for="priceOfWater" class="input-group-text">Đồng/Số</label>
+      </div>
+      <button class="btn btn-create w-50 ms-3 mt-3" onclick="UpdatePrice()">Cập Nhật</button>
+    </div>
+  </div>
+  <div class="col-10 content">
+    <div class="row content-header">
+      <div class="search room-status input-group w-25">
+        <label for="room-status" class="m-2">Tình Trạng Phòng: </label>
+        <select id="room-status" name="room-status" class="input-control w-50">
+          <option value="-1" selected="selected">Tất Cả</option>
+          <option value="1">Phòng Đang Ở</option>
+          <option value="0">Phòng Trống</option>
+        </select>
+      </div>
+      <div class="search input-room-search input-group w-25">
+        <input class="form-control" name="input-room-search" placeholder="Tên Phòng, ..." id="roomName">
+        <button class="btn btn-primary" onclick="Search()">Tìm kiếm</button>
+      </div>
+      <div class="room-create w-25">
+        <button class="btn btn-create" onclick="OpenModal('roomCreateModal')">Thêm Phòng Mới</button>
+      </div>
+    </div>
+    <nav aria-label="..." id="pagination" class="ms-5 mt-3"></nav>
+    <div class="row row-cols-5 content-body gap-5 p-2 ps-5" id="content-body"></div>
+  </div>
+</div>
+<div th:replace="fragment/footer :: footer"></div>
+<script type="application/javascript" src="/JS/Controllers/room/room.js"></script>
+<script type="application/javascript" src="/JS/Controllers/room/roomCreate.js"></script>
+</body>
+</html>
